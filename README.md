@@ -1,0 +1,1 @@
+# django_eats_easy_ordering_system
