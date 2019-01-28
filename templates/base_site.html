@@ -1,0 +1,32 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+ {% block usertools %}
+        <div id="user-tools">
+            {% block welcome-msg %}
+                Welcome
+                <strong>{% firstof user.get_short_name user.get_username %}</strong>.
+            {% endblock %}
+            {% block userlinks %}
+                {% if user.has_usable_password %}
+                <a href="{% url 'admin:password_change' %}">Change password</a> /
+                {% endif %}
+                <a href="{% url 'logout'%}">Log out</a>
+            {% endblock %}
+        </div>
+{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'index' %}">{{ site_header|default:_('Eats Easy Ordering System') }}</a></h1>
+{% endblock %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+    <a href="{% url 'lunch' %}">Lunch</a>
+    {% if title %} &rsaquo; {{ title }}{% endif %}
+    <a href="{% url 'admin:index' %}" style="margin-left:10px">Settings</a>
+</div>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
