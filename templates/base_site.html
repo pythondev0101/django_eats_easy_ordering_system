@@ -23,9 +23,10 @@
 
 {% block breadcrumbs %}
 <div class="breadcrumbs">
-    <a href="{% url 'lunch' %}">Lunch</a>
+    <a href="{% url 'dashboard' %}">Dashboard</a>
+    <a href="{% url 'lunch' %}" style="margin-left:10px">Lunch</a>
     {% if title %} &rsaquo; {{ title }}{% endif %}
-    <a href="{% url 'admin:index' %}" style="margin-left:10px">Settings</a>
+    <a href="{% url 'admin:index' %}" style="margin-left:10px">Admin Site</a>
 </div>
 {% endblock %}
 

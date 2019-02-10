@@ -6,6 +6,5 @@ from core.models import *
 admin.site.register(Product)
 admin.site.register(Supplier)
 admin.site.register(Category)
-
-
+admin.site.site_header = "Eats Easy Ordering Administration"
 
