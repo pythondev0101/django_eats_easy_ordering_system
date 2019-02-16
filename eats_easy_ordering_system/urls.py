@@ -15,13 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include, re_path
-from django.conf.urls import url
 from django.views.generic import RedirectView
-from django.conf.urls import url, include
-from django.contrib.auth.models import User
 from rest_framework import routers, serializers, viewsets
-from django.conf.urls import include, url
+from django.conf.urls import url
 from django.conf import settings
+from django.contrib.auth.models import User
 
 
 # Serializers define the API representation.
@@ -42,9 +40,8 @@ router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 
 urlpatterns = [
-    path('', RedirectView.as_view(url='/web/', permanent=True)),
+    path('', RedirectView.as_view(url='/web/user/', permanent=True)),
     path('admin/', admin.site.urls),
-    # re_path(r'^api-auth/',include('rest_framework.urls')),
     path('web/', include('core.urls')),
     path('web/lunch/',include('lunch.urls')),
     path('web/user/', include('django.contrib.auth.urls')),
@@ -52,11 +49,10 @@ urlpatterns = [
     # Wire up our API using automatic URL routing.
     # Additionally, we include login URLs for the browsable API.
     url(r'^', include(router.urls)),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
 
 # For debug-toolbar
-
 if settings.DEBUG:
     import debug_toolbar
     urlpatterns = [

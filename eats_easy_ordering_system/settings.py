@@ -27,9 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -38,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',
+    'social_django',
     'rest_framework',
     'core.apps.CoreConfig',
     'lunch.apps.LunchConfig',
@@ -68,6 +67,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -75,10 +76,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'eats_easy_ordering_system.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -89,17 +88,11 @@ DATABASES = {
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
         }
-        # FOR SQLITE DB
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        # END FOR
     }
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -125,7 +118,6 @@ REST_FRAMEWORK = {
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'Asia/Manila'
@@ -145,6 +137,24 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static/'),
 ]
 
+INTERNAL_IPS = ('127.0.0.1',)
+
+# FOR GOOGLE AUTHENTICATION REF: https://fosstack.com/how-to-add-google-authentication-in-django/
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.open_id.OpenIdAuth',
+    'social_core.backends.google.GoogleOpenId',
+    'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '564441813776-v52iqeura1aufqrl88e59vs6lhm5rntt.apps.googleusercontent.com'
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '4VyVrGZudJbe_2sw8ynPcdjB'
+
+LOGIN_URL = 'login'
+
 LOGIN_REDIRECT_URL = '/'
 
-INTERNAL_IPS = ('127.0.0.1',)
+LOGOUT_REDIRECT_URL = '/'
+
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
