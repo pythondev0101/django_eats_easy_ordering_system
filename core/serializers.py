@@ -15,5 +15,3 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
 
 
-hahahahaha
-
