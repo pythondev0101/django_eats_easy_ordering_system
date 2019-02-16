@@ -6,4 +6,4 @@ from django.shortcuts import render
 def index(request):
     """View function returning the home page"""
 
-    return render(request,'index.html')
+    return render(request,'dashboard/dashboard.html')

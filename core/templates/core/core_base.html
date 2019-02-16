@@ -1,0 +1,22 @@
+{% extends "base_site.html" %}
+
+{% block extrahead %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'dashboard/css/styles.css' %}">
+{% endblock extrahead %}
+
+{% block content %}
+<section>
+  {% block navigation %}
+  <nav>
+    <ul>
+      <li><a href="#">Order</a></li>
+      <li><a href="#">nav2</a></li>
+      <li><a href="#">nav3</a></li>
+    </ul>
+  </nav>
+  {% endblock navigation %}
+  <article>
+  </article>
+</section>
+{% endblock content %}
