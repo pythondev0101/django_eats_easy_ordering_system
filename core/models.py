@@ -1,22 +1,18 @@
 from django.db import models
-from django.contrib.auth.models import User,UserManager
+from django.db.models import signals
+from django.dispatch import receiver
+from django.contrib.auth.models import User
+import logging
 
 # Create your models here.
 
-
-# class ExtendUserManager(UserManager):
-#     def create_user(self, username, email=None, password=None, **extra_fields):
-#         extra_fields.setdefault('is_active', False)
-#         extra_fields.setdefault('is_staff', False)
-#         extra_fields.setdefault('is_superuser', False)
-#         # return super(ExtendUserManager, self).create_user(username, email, password, **extra_fields)
-#         return self.create_user(username, email, password, **extra_fields)
+logger = logging.getLogger(__name__)
 
 
-# class ExtendUser(User):
-#     class Meta:
-#         proxy = True
-
+@receiver(signals.pre_save,sender=User)
+def pre_create_of_user(sender,instance,**kwargs):
+    if instance._state.adding:
+        instance.is_active = False
 
 
 class Base(models.Model):
