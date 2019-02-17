@@ -1,7 +1,23 @@
 from django.db import models
-
+from django.contrib.auth.models import User,UserManager
 
 # Create your models here.
+
+
+# class ExtendUserManager(UserManager):
+#     def create_user(self, username, email=None, password=None, **extra_fields):
+#         extra_fields.setdefault('is_active', False)
+#         extra_fields.setdefault('is_staff', False)
+#         extra_fields.setdefault('is_superuser', False)
+#         # return super(ExtendUserManager, self).create_user(username, email, password, **extra_fields)
+#         return self.create_user(username, email, password, **extra_fields)
+
+
+# class ExtendUser(User):
+#     class Meta:
+#         proxy = True
+
+
 
 class Base(models.Model):
     """Base Fields"""
