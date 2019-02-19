@@ -4,16 +4,17 @@
 
  {% block usertools %}
         <div id="user-tools">
+            {% if user.has_usable_password %}
             {% block welcome-msg %}
                 Welcome
-                <strong>{% firstof user.get_short_name user.get_username %}</strong>.
+                <strong>{% firstof user.get_short_name user.get_username %}</strong>
             {% endblock %}
             {% block userlinks %}
-                {% if user.has_usable_password %}
+
                 <a href="{% url 'admin:password_change' %}">Change password</a> /
-                {% endif %}
                 <a href="{% url 'logout'%}">Log out</a>
             {% endblock %}
+            {% endif %}
         </div>
 {% endblock %}
 
