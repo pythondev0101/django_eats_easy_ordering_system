@@ -1,0 +1,12 @@
+{% extends "lunch_base_template.html" %}
+
+{% block action %}
+<div class="col-sm-9">
+    <h4 class="detail-name">{{ order.name }}</h4>
+    <h4 class="detail-status">Status: {{ order.status }}</h4>
+    <hr>
+    <div>
+        {{ order.total }}
+    </div>
+</div>
+{% endblock action %}

@@ -470,7 +470,7 @@ a.button {
 }
 
 .button.default, input[type=submit].default, .submit-row input.default {
-    float: right;
+    float: left;
     border: none;
     font-weight: 400;
     background: #417690;
@@ -774,10 +774,6 @@ table#change-history tbody th {
     padding: 0;
 }
 
-#content {
-    padding: 20px 40px;
-}
-
 .dashboard #content {
     width: 600px;
 }
@@ -980,4 +976,19 @@ table#change-history tbody th {
 
 .popup #header {
     padding: 10px 20px;
+}
+
+/* My custom css */
+
+@media (min-width: 768px)
+.col-sm-3.sidenav {
+    width: 15% !important;
+}
+
+.detail-status {
+    float:right;
+}
+
+.detail-name {
+    float:left;
 }
