@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'social_django',
     'rest_framework',
+    'extra_views',
     'core.apps.CoreConfig',
     'lunch.apps.LunchConfig',
     'dashboard.apps.DashboardConfig',
