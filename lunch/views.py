@@ -3,7 +3,18 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .models import Order
 from django.views.generic import DetailView,ListView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from  import
 # Create your views here.
+
+
+class OrdersOfUserListView(LoginRequiredMixin, ListView):
+    model = Order
+    template_name = 'lunch/orders_list_of_user.html'
+    paginate_by = 10
+
+    def get_queryset(self):
+        return Order.objects.filter(user_id=self.request.user)
 
 
 class OrderListView(ListView):

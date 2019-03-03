@@ -251,7 +251,7 @@ td, th {
     line-height: 16px;
     border-bottom: 1px solid #eee;
     vertical-align: top;
-    padding: 8px;
+    padding: 8px !important;
     font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
 }
 

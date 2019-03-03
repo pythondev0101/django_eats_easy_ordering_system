@@ -1,0 +1,57 @@
+{% extends "lunch_base_template.html" %}
+
+{% block action %}
+<div class="col-sm-9">
+    <h4>My Orders</h4>
+    <hr style="margin-bottom: 0px;">
+    <div class="results">
+        <table id="result_list">
+            <thead>
+            <tr>
+                <th scope="col" class="sortable column-name">
+                    <div class="text">
+                        <a>Name</a>
+                    </div>
+                    <div class="clear"></div>
+                </th>
+                <th scope="col" class="sortable column-date">
+                    <div class="text">
+                        <a>Date</a>
+                    </div>
+                    <div class="clear"></div>
+                </th>
+                <th scope="col" class="sortable column-total">
+                    <div class="text">
+                        <a>Total</a>
+                    </div>
+                    <div class="clear"></div>
+                </th>
+                <th scope="col" class="sortable column-supplier">
+                    <div class="text">
+                        <a>Supplier</a>
+                    </div>
+                    <div class="clear"></div>
+                </th>
+                <th scope="col" class="sortable column-status">
+                    <div class="text">
+                        <a>Status</a>
+                    </div>
+                    <div class="clear"></div>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for order in order_list %}
+            <tr class="{% cycle 'row1' 'row2' %}">
+                <td class="field-name"><a href="{% url 'order-detail' order.pk %}">{{ order.name }}</a></td>
+                <td class="field-date">{{ order.date }}</td>
+                <td class="field-total">{{ order.total }}</td>
+                <td class="field-supplier">{{ order.supplier_id.name }}</td>
+                <td class="field-status">{{ order.status }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock action %}
