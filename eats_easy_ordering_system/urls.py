@@ -32,6 +32,7 @@ urlpatterns = [
     path('web/lunch/', include('lunch.urls')),
     path('web/user/', include('django.contrib.auth.urls')),
     path('web/dashboard/',include('dashboard.urls')),
+    path('web/hr/', include('human_resource.urls')),
     # Wire up our API using automatic URL routing.
     # Additionally, we include login URLs for the browsable API.
     url(r'^api/v1/', include(router.urls)),

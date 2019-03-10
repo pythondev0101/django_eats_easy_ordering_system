@@ -2,12 +2,18 @@
 
 {% block action %}
 <div class="col-sm-9">
-    <form action="" method="post">
+<form method="post">
+    <h4 id="form_name" class="detail-name">{{ form.name.as_hidden }}</h4>
+    <h4 class="detail-status">Status: NEW</h4>
         {% csrf_token %}
         <input type="submit" value="Save" class="default">
         <hr>
         <table>
-            {{ form.as_table }}
+            {{ orderlines.management_form }}
+
+            {% for orderline in orderlines.forms %}
+            {{ orderline.as_p }}
+            {% endfor %}
         </table>
     </form>
 </div>

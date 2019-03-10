@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'extra_views',
     'core.apps.CoreConfig',
     'lunch.apps.LunchConfig',
+    'human_resource.apps.HumanResourceConfig',
     'dashboard.apps.DashboardConfig',
 ]
 
