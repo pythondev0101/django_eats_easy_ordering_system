@@ -10,4 +10,5 @@ class OrderLineInline(admin.StackedInline):
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
     inlines = [OrderLineInline]
+    list_display = ('user','total','status',)
 
