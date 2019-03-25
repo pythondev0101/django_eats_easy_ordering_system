@@ -19,11 +19,12 @@ from django.views.generic import RedirectView
 from rest_framework import routers
 from django.conf.urls import url
 from django.conf import settings
-from core.views import UserViewSet
+from core.views import UserViewSet,ProductViewSet
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
+router.register(r'products',ProductViewSet)
 
 urlpatterns = [
     path('', RedirectView.as_view(url='/web/', permanent=True)),
@@ -35,7 +36,7 @@ urlpatterns = [
     path('web/hr/', include('human_resource.urls')),
     # Wire up our API using automatic URL routing.
     # Additionally, we include login URLs for the browsable API.
-    url(r'^api/v1/', include(router.urls)),
+    url(r'^api/', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
 
