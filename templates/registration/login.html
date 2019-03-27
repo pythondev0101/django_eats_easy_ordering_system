@@ -1,5 +1,10 @@
 {% extends "base_site.html" %}
 
+{% block extrahead %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock extrahead %}
+
 {% block content %}
 
 {% if form.errors %}
@@ -18,24 +23,31 @@
 <form method="post" action="{% url 'login' %}">
 {% csrf_token %}
 
-<div>
-  <td>{{ form.username.label_tag }}</td>
-  <td>{{ form.username }}</td>
-</div>
-<div>
-  <td>{{ form.password.label_tag }}</td>
-  <td>{{ form.password }}</td>
-</div>
+<body>
+ <div class="login">
+  <h2 class="login-header">WELCOME</h2>
 
+  <form class="login-container">
+      <div>
+      <td>{{ form.username.label_tag }}</td>
+      <td>{{ form.username }}</td>
+
+      <td>{{ form.password.label_tag }}</td>
+      <td>{{ form.password }}</td>
+    </div>
 <div>
-  <input type="submit" value="Login" />
+  <input class="log" type="submit" value="Login" />
   <input type="hidden" name="next" value="{{ next }}" />
 </div>
-</form>
-<p><strong>OR</strong></p>
-<a href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a>
-
+ <a href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a>
 {# Assumes you setup the password_reset view in your URLconf #}
-<p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+<p><a href="{% url 'password_reset' %}">Forgot Password?</a></p>
+
+</form>
+
+
+
 
 {% endblock %}
+
+</div>
