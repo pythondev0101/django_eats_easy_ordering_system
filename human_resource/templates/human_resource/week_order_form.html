@@ -1,0 +1,18 @@
+{% extends "hr_base_template.html" %}
+
+{% block action %}
+
+<div class="col-sm-9">
+<form method="post">
+    <h4 id="form_name" class="detail-name">{{ form.name.as_hidden }}</h4>
+    <h4 class="detail-status">Status: NEW</h4>
+        {% csrf_token %}
+        <input type="submit" value="Save" class="default">
+        <hr>
+    {% for place in form %}
+    Name: {{ place.name }}<br/>
+    Area: <br/>{% for area in form.monday.all %}{{ area }}<br/>{% endfor %}
+{% endfor %}
+    </form>
+</div>
+{% endblock action %}
