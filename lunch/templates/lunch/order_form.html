@@ -1,14 +1,173 @@
 {% extends "lunch_base_template.html" %}
 
+{% block extrahead %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/order.css' %}">
+{% endblock extrahead %}
+
 {% block action %}
+
+
 <div class="col-sm-9">
-    <form action="" method="post">
+<form method="post">
+    <h4 id="form_name" class="detail-name">{{ form.name.as_hidden }}</h4>
+    <h4 class="detail-status">Status: NEW</h4>
         {% csrf_token %}
+    <br>
         <input type="submit" value="Save" class="default">
-        <hr>
-        <table>
-            {{ form.as_table }}
-        </table>
+    <hr>
+
+    <h2>Monday</h2>
+    <div class="row">
+          <div class="column">
+          <div class="box">
+             <img src="{% static 'images/caldereta.jpg' %}" style="width:100%" >
+             <h1 class="des">Caldereta</h1>
+             <p><button class="button">Add to cart</button></p>
+           </div>
+    </div>
+
+   <div class="column">
+      <div class="box">
+             <img src="{% static 'images/curry.jpg' %}" style="width:100%" >
+             <h1 class="des">Chicken Curry</h1>
+             <p><button class="button">Add to cart</button></p>
+           </div>
+   </div>
+
+  <div class="column">
+      <div class="box">
+             <img src="{% static 'images/dinuguan.jpg' %}" style="width:100%" >
+             <h1 class="des">Dinuguan</h1>
+             <p><button class="button">Add to cart</button></p>
+           </div>
+  </div>
+    </div>
+
+    <div>
+        <h2>Tuesday</h2>
+    <div class="row">
+          <div class="column">
+          <div class="box">
+             <img src="{% static 'images/adobo.jpg' %}" style="width:100%" >
+             <h1 class="des">Adobo</h1>
+             <p><button class="button">Add to cart</button></p>
+           </div>
+    </div>
+
+   <div class="column">
+      <div class="box">
+             <img src="{% static 'images/baka.jpg' %}" style="width:100%" >
+             <h1 class="des">Nilagang Baka</h1>
+             <p><button class="button">Add to cart</button></p>
+           </div>
+   </div>
+
+  <div class="column">
+      <div class="box">
+             <img src="{% static 'images/bbq.jpg' %}" style="width:100%" >
+             <h1 class="des">Barbeque</h1>
+             <p><button class="button">Add to cart</button></p>
+           </div>
+  </div>
+    </div>
+
+    <div>
+        <h2>Wednesday</h2>
+    <div class="row">
+          <div class="column">
+          <div class="box">
+             <img src="{% static 'images/fishfillet.jpg' %}" style="width:100%" >
+             <h1 class="des">Fish Fillet</h1>
+             <p><button class="button">Add to cart</button></p>
+           </div>
+    </div>
+
+   <div class="column">
+      <div class="box">
+             <img src="{% static 'images/kare.jpg' %}" style="width:100%" >
+             <h1 class="des">Kare-Kare</h1>
+             <p><button class="button">Add to cart</button></p>
+           </div>
+   </div>
+
+  <div class="column">
+      <div class="box">
+             <img src="{% static 'images/menudo.jpg' %}" style="width:100%" >
+             <h1 class="des">Menudo</h1>
+             <p><button class="button">Add to cart</button></p>
+           </div>
+  </div>
+    </div>
+
+        <div>
+
+        <h2>Thursday</h2>
+    <div class="row">
+          <div class="column">
+          <div class="box">
+             <img src="{% static 'images/pakbet.jpg' %}" style="width:100%" >
+             <h1 class="des">Pakbet</h1>
+             <p><button class="button">Add to cart</button></p>
+           </div>
+    </div>
+
+   <div class="column">
+      <div class="box">
+             <img src="{% static 'images/sinigang.jpg' %}" style="width:100%" >
+             <h1 class="des">Sinigang</h1>
+             <p><button class="button">Add to cart</button></p>
+           </div>
+   </div>
+
+  <div class="column">
+      <div class="box">
+             <img src="{% static 'images/sisig.jpg' %}" style="width:100%" >
+             <h1 class="des">Sisig</h1>
+             <p><button class="button">Add to cart</button></p>
+           </div>
+  </div>
+        </div>
+
+        <div>
+        <h2>Friday</h2>
+    <div class="row">
+          <div class="column">
+          <div class="box">
+             <img src="{% static 'images/tapa.jpg' %}" style="width:100%" >
+             <h1 class="des">Tapa</h1>
+             <p><button class="button">Add to cart</button></p>
+
+           </div>
+    </div>
+
+   <div class="column">
+      <div class="box">
+             <img src="{% static 'images/tinola.jpg' %}" style="width:100%" >
+             <h1 class="des">Tinola</h1>
+             <p><button class="button">Add to cart</button></p>
+           </div>
+   </div>
+
+  <div class="column">
+      <div class="box">
+             <img src="{% static 'images/dinuguan.jpg' %}" style="width:100%" >
+             <h1 class="des">Dinuguan</h1>
+             <p><button class="button">Add to cart</button></p>
+           </div>
+  </div>
+</div>
+
+
+</div>
+
+
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+
     </form>
 </div>
+
+<script src="{% static 'js/top.js' %}"></script>
+
+
 {% endblock action %}

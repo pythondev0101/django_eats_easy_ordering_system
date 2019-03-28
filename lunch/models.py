@@ -8,10 +8,11 @@ class Order(models.Model):
     """Blueprint for Order object"""
 
     name = models.CharField(max_length=255,default='')
-    user_id = models.ForeignKey(User, on_delete=models.SET_NULL,null=True)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL,null=True)
     total = models.DecimalField(max_digits=9,decimal_places=2,verbose_name='Total')
-    status = models.CharField(max_length=10,verbose_name='Status')
-    supplier_id = models.ForeignKey('core.Supplier',verbose_name='Supplier',on_delete=models.SET_NULL,null=True)
+
+    ORDER_STATUS = (('new', 'New'),('received', 'Received'),('ordered', 'Ordered'),('cancelled', 'Cancelled'))
+    status = models.CharField(max_length=10,choices=ORDER_STATUS,blank=True, verbose_name='Status',default='new')
     date = models.DateField()
 
     def get_absolute_url(self):
@@ -19,8 +20,8 @@ class Order(models.Model):
 
 
 class OrderLine(models.Model):
-    order_id = models.ForeignKey('Order',on_delete=models.SET_NULL,null=True)
-    product_id = models.ForeignKey('core.Product',on_delete=models.SET_NULL,null=True)
+    order = models.ForeignKey('Order',on_delete=models.SET_NULL,null=True)
+    product = models.ForeignKey('core.Product',on_delete=models.SET_NULL,null=True)
     date = models.DateField(verbose_name="Date",null=True)
 
 
