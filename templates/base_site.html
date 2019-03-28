@@ -28,10 +28,9 @@
     <a href="{% url 'dashboard' %}">Dashboard</a>
     <a href="{% url 'order_create' %}" style="margin-left:10px">Lunch</a>
     {% if perms.human_resource.can_access_hr %}
-    <a href="{% url 'human_resource' %}" style="margin-left:10px">Human Resource</a>
+    <a href="/admin/human_resource" style="margin-left:10px">Human Resource</a>
     {% endif %}
-    {% if title %} &rsaquo; {{ title }}{% endif %}
-    <a href="{% url 'admin:index' %}" style="margin-left:10px">Admin Site</a>
+    <a href="{% url 'admin:index' %}" style="margin-left:10px">Settings</a>
     {% else %}
     <a href="{% url 'login' %}">Log in</a>
     {% endif %}

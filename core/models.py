@@ -42,6 +42,8 @@ class Product(models.Model):
     def get_absolute_url(self):
         pass
 
+    def __unicode__(self):
+        return self.name
 
 class Supplier(models.Model):
     """Blueprint for Supplier model"""
