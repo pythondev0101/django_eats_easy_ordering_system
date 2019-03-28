@@ -863,7 +863,8 @@ input[type="submit"], button {
     }
 
     .login #content-main {
-        float: none;
+        float: center;
+
     }
 
     .login .form-row {
@@ -892,6 +893,11 @@ input[type="submit"], button {
     .login .submit-row input {
         margin: 0;
         text-transform: uppercase;
+    }
+
+   // .login form
+    {
+        float: center;
     }
 
     .errornote {
