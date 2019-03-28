@@ -20,6 +20,7 @@ from rest_framework import routers
 from django.conf.urls import url
 from django.conf import settings
 from core.views import UserViewSet,ProductViewSet
+from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
@@ -38,6 +39,8 @@ urlpatterns = [
     # Additionally, we include login URLs for the browsable API.
     url(r'^api/', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path(r'api-token-auth/', obtain_jwt_token),
+    path(r'api-token-refresh/', refresh_jwt_token),
 ]
 
 # For debug-toolbar
