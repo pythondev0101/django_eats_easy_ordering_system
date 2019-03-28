@@ -9,6 +9,14 @@ import datetime
 
 DateInput = partial(forms.DateInput, {'class': 'datepicker'})
 
+
+
+def hr_products(request):
+    """View function returning the home page"""
+
+    return render(request,'human_resource/products.html')
+
+
 class DateRangeForm(forms.Form):
     start_date = forms.DateField(widget=DateInput())
     end_date = forms.CharField()

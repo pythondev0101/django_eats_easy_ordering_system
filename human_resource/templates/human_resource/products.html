@@ -1,0 +1,50 @@
+{% extends 'hr_base_template.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/prod.css' %}">
+{% block action %}
+
+<div>
+
+    <h1>Manage Products</h1>
+<div class="col-sm-9">
+
+    <div class="row">
+          <div class="column">
+          <div class="box">
+                <label for="fname">Product:  </label>
+                <div>
+                <input type="text" id="fname" placeholder="Product..">
+                </div>
+
+                <div>
+                <label>Day:  </label>
+                </div>
+                <select>
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="thursday">Thursday</option>
+                    <option value="friday">Friday</option>
+                </select>
+
+              <div>
+                     <label>Description</label>
+                  <div class="write">
+                    <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+                  </div>
+              </div>
+              <br>
+                <div class="row">
+                 <input type="submit" value="Submit">
+                </div>
+           </div>
+    </div>
+
+</div>
+</div>
+
+
+
+
+
+{% endblock action %}
