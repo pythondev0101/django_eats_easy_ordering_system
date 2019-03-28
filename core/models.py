@@ -34,6 +34,7 @@ class Product(models.Model):
                                  help_text="Select the product's supplier")
     category = models.ForeignKey('Category', verbose_name='Category', on_delete=models.SET_NULL, null=True,
                                  help_text="Select the product's category")
+    image = models.ImageField(upload_to="products",default="default.png")
 
     def __str__(self):
         """Function returning a string representation of the product object"""
