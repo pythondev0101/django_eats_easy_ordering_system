@@ -30,6 +30,11 @@ class OrderListView(ListView):
 class OrderDetailView(DetailView):
     model = Order
 
+    def get_context_data(self, **kwargs):
+        context = super(OrderDetailView, self).get_context_data(**kwargs)
+        orderline = OrderLine.objects.filter
+        return context
+
 
 class OrderLineInline(InlineFormSetFactory):
     model = OrderLine
