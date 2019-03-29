@@ -6,7 +6,7 @@ from django.urls import reverse
 
 class Order(models.Model):
     """Blueprint for Order object"""
-
+    weekorder = models.ForeignKey('human_resource.OrderForWeek',on_delete=models.SET_NULL,null=True)
     name = models.CharField(max_length=255,default='')
     user = models.ForeignKey(User, on_delete=models.SET_NULL,null=True)
     total = models.DecimalField(max_digits=9,decimal_places=2,verbose_name='Total')

@@ -8,6 +8,7 @@ from extra_views import CreateWithInlinesView,InlineFormSetFactory
 from .forms import OrderLineFormSet
 import datetime
 from pprint import pprint
+from human_resource.models import OrderForWeek
 
 # Create your views here.
 
@@ -45,6 +46,16 @@ class CreateOrderView(CreateView):
         if self.request.POST:
             data['orderlines'] = OrderLineFormSet(self.request.POST)
         else:
+            try:
+                order =OrderForWeek.objects.filter(status='active').latest('date')
+                data['order'] = order
+                data['mondays'] = order.monday.all()
+                data['tuesdays'] = order.tuesday.all()
+                data['wednesdays'] = order.wednesday.all()
+                data['thursdays'] = order.thursday.all()
+                data['fridays'] = order.friday.all()
+            except Exception as e:
+                pass
             data['orderlines'] = OrderLineFormSet()
         return data
 
