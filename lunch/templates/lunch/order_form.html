@@ -10,6 +10,7 @@
 
 <div class="col-sm-9">
     {% if order %}
+    {% if not check %}
     <form method="post">
         <h4 id="form_name" class="detail-name">{{ form.name.as_hidden }}</h4>
         <h4 class="detail-status">Status: NEW</h4>
@@ -20,6 +21,10 @@
         <input type="submit" value="Save" class="default">
         <hr>
                  {{ orderlines.management_form }}
+            <!--{% for orderline in orderlines.forms %}-->
+            <!--{{ orderline.as_p }}-->
+            <!--{% endfor %}-->
+
         <h2>Monday</h2>
         <div class="row">
             <fieldset id="mondaygroup">
@@ -35,6 +40,7 @@
                     </div>
                 </div>
                 {% endfor %}
+                <input type="text" name="orderline_set-0-day" id="id_orderline_set-0-day" maxlength="10" value="monday">
             </fieldset>
         </div>
         <h2>Tuesday</h2>
@@ -51,6 +57,8 @@
                     </div>
                 </div>
                 {% endfor %}
+                <input type="text" name="orderline_set-1-day" id="id_orderline_set-1-day" maxlength="10" value="tuesday">
+
             </fieldset>
         </div>
         <h2>Wednesday</h2>
@@ -67,6 +75,7 @@
                     </div>
                 </div>
                 {% endfor %}
+                <input type="text" name="orderline_set-2-day" id="id_orderline_set-2-day" maxlength="10" value="wednesday">
             </fieldset>
         </div>
         <h2>Thursday</h2>
@@ -84,6 +93,7 @@
                     </div>
                 </div>
                 {% endfor %}
+                <input type="text" name="orderline_set-3-day" id="id_orderline_set-3-day" maxlength="10" value="thursday">
             </fieldset>
         </div>
 
@@ -101,10 +111,14 @@
                     </div>
                 </div>
                 {% endfor %}
+                <input type="text" name="orderline_set-4-day" id="id_orderline_set-4-day" maxlength="10" value="friday">
             </fieldset>
             <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
         </div>
     </form>
+    {% else %}
+    LOOK LIKE YOU'VE ORDERED ALREADY
+    {% endif %}
     {% else %}
     THERE'S NO ACTIVE ORDERS FROM HR
     {% endif %}

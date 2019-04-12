@@ -1,0 +1,37 @@
+{% extends "lunch_base_template.html" %}
+
+{% block extrahead %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/order.css' %}">
+{% endblock extrahead %}
+
+{% block action %}
+
+
+<div class="col-sm-9">
+        {% if order %}
+
+    <form method="post">
+        <h4 id="form_name" class="detail-name">{{ form.name.as_hidden }}</h4>
+        <h4 class="detail-status">Status: NEW</h4>
+
+        <h4 style="float: right;padding-right: 250px;">Order Info: {{ order.name }}</h4>
+        {% csrf_token %}
+        <br>
+        <input type="submit" value="Save" class="default" name="_save">
+        <hr>
+                 {{ orderlines.management_form }}
+            {% for orderline in orderlines.forms %}
+            {{ orderline.as_p }}
+            {% endfor %}
+
+    </form>
+    {% else %}
+    YOUR ORDER WAS ALREADY ORDERED
+    {% endif %}
+</div>
+
+<script src="{% static 'js/top.js' %}"></script>
+
+
+{% endblock action %}

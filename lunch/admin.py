@@ -5,7 +5,7 @@ from .models import Order,OrderLine
 
 class OrderLineInline(admin.TabularInline):
     model = OrderLine
-    fields = ('product','date',)
+    fields = ('product','day','date',)
     extra = 0
 
 @admin.register(Order)

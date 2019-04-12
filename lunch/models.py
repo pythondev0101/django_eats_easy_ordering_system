@@ -23,7 +23,7 @@ class OrderLine(models.Model):
     order = models.ForeignKey('Order',on_delete=models.SET_NULL,null=True)
     product = models.ForeignKey('core.Product',on_delete=models.SET_NULL,null=True)
     date = models.DateField(verbose_name="Date",null=True)
-
+    day = models.CharField(max_length=10,default="",blank=True)
 
 
 
