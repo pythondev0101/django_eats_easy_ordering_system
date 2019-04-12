@@ -69,3 +69,35 @@ h2
 #myBtn:hover {
   background-color: #555;
 }
+
+@media screen and (max-width: 640px) {
+
+  #header {
+    visibility: collapse;
+    clear: both;
+    float: left;
+    margin: 10px auto 5px 20px;
+    width: 28%;
+    display: none;
+  }
+
+    .breadcrumbs {
+    visibility: collapse;
+    clear: both;
+    float: left;
+    margin: 10px auto 5px 20px;
+    width: 28%;
+    display: none;
+
+  }
+
+  .col-sm-3,sidenav
+{
+    visibility: collapse;
+    clear: both;
+    float: left;
+    margin: 10px auto 5px 20px;
+    width: 28%;
+    display: none;
+}
+}
