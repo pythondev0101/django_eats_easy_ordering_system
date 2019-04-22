@@ -19,21 +19,22 @@ from django.views.generic import RedirectView
 from rest_framework import routers
 from django.conf.urls import url
 from django.conf import settings
-from core.views import UserViewSet,ProductViewSet
+from core.views import UserViewSet,ProductViewSet,HRViewSet,OrderViewSet
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'products',ProductViewSet)
-
+router.register(r'hr',HRViewSet)
+router.register(r'order',OrderViewSet)
 urlpatterns = [
     path('', RedirectView.as_view(url='/web/', permanent=True)),
     path('admin/', admin.site.urls),
     path('web/', include('core.urls')),
     path('web/lunch/', include('lunch.urls')),
     path('web/user/', include('django.contrib.auth.urls')),
-    path('web/dashboard/',include('dashboard.urls')),
+    path('web/dashboard/', include('dashboard.urls')),
     path('web/hr/', include('human_resource.urls')),
     # Wire up our API using automatic URL routing.
     # Additionally, we include login URLs for the browsable API.

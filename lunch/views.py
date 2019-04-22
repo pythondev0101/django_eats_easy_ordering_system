@@ -52,7 +52,7 @@ class CreateOrderView(CreateView):
             data['orderlines'] = OrderLineFormSet(self.request.POST)
         else:
             try:
-                order =OrderForWeek.objects.filter(status='active').latest('date')
+                order = OrderForWeek.objects.filter(status='active').latest('date')
                 data['order'] = order
                 data['mondays'] = order.monday.all()
                 data['tuesdays'] = order.tuesday.all()
