@@ -1,8 +1,11 @@
 from django.shortcuts import render
 from rest_framework import viewsets
 from django.contrib.auth.models import User
-from .serializers import UserSerializer,ProductSerializer
+from .serializers import UserSerializer,ProductSerializer,HRSerializer,OrderSerializer
 from .models import Product
+from human_resource.models import OrderForWeek
+from lunch.models import Order
+
 # Create your views here.
 
 
@@ -16,6 +19,14 @@ class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
+
+class HRViewSet(viewsets.ModelViewSet):
+    queryset = OrderForWeek.objects.all()
+    serializer_class = HRSerializer
+
+class OrderViewSet(viewsets.ModelViewSet):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
 
 def index(request):
     """View function returning the home page"""

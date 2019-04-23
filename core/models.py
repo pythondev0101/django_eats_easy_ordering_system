@@ -34,7 +34,7 @@ class Product(models.Model):
                                  help_text="Select the product's supplier")
     category = models.ForeignKey('Category', verbose_name='Category', on_delete=models.SET_NULL, null=True,
                                  help_text="Select the product's category")
-
+    image = models.ImageField(upload_to="products",default="default.svg.png")
     def __str__(self):
         """Function returning a string representation of the product object"""
         return self.name
@@ -44,6 +44,7 @@ class Product(models.Model):
 
     def __unicode__(self):
         return self.name
+
 
 class Supplier(models.Model):
     """Blueprint for Supplier model"""

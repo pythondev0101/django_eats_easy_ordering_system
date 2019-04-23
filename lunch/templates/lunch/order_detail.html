@@ -1,12 +1,55 @@
 {% extends "lunch_base_template.html" %}
-
+{% block extrahead %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/odetail.css' %}">
+{% endblock extrahead %}
 {% block action %}
+
 <div class="col-sm-9">
     <h4 class="detail-name">{{ order.name }}</h4>
     <h4 class="detail-status">Status: {{ order.status }}</h4>
     <hr>
-    <div>
-        {{ order.total }}
-    </div>
+    <div class="day">
+            <table id="customers">
+  <tr>
+    <th>Day</th>
+    <th>Order</th>
+    <th>Action</th>
+
+  </tr>
+
+  <tr>
+    <td>Monday</td>
+    <td>Caldereta</td>
+    <td><button>delete</button></td>
+  </tr>
+  <tr>
+    <td>Tuesday</td>
+    <td>Adobo</td>
+    <td><button>delete</button></td>
+  </tr>
+  <tr>
+    <td>Wednesday</td>
+    <td>Menudo</td>
+    <td><button>delete</button></td>
+  </tr>
+  <tr>
+    <td>Thursday</td>
+    <td>Sinigang</td>
+    <td><button>delete</button></td>
+  </tr>
+  <tr>
+    <td>Friday</td>
+    <td>Tapa</td>
+    <td><button>delete</button></td>
+  </tr>
+
+</table>
+
+
+
 </div>
+
+
+
 {% endblock action %}
