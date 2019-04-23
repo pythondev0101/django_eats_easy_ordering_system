@@ -67,6 +67,7 @@ class CreateOrderView(CreateView):
                 order = OrderForWeek.objects.filter(status='active').latest('date')
                 check = Order.objects.filter(user=self.request.user, weekorder=order).count()
                 data['check'] = check
+                order = OrderForWeek.objects.filter(status='active').latest('date')
                 data['order'] = order
                 data['mondays'] = order.monday.all()
                 data['tuesdays'] = order.tuesday.all()

@@ -13,7 +13,7 @@ class Order(models.Model):
 
     ORDER_STATUS = (('new', 'New'),('received', 'Received'),('ordered', 'Ordered'),('cancelled', 'Cancelled'))
     status = models.CharField(max_length=10,choices=ORDER_STATUS,blank=True, verbose_name='Status',default='new')
-    date = models.DateField()
+    date = models.DateField(null=True)
 
     def get_absolute_url(self):
         return reverse('order-detail', args=[str(self.id)])
