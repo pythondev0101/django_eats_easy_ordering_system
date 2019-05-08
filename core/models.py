@@ -9,11 +9,11 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-@receiver(signals.pre_save,sender=User)
-def pre_create_of_user(sender,instance,**kwargs):
-    if instance._state.adding:
-        instance.is_active = False
-    # TODO: CreateSuperuser() is affected
+# @receiver(signals.pre_save,sender=User)
+# def pre_create_of_user(sender,instance,**kwargs):
+#     if instance._state.adding:
+#         instance.is_active = False
+#     # TODO: CreateSuperuser() is affected
 
 class Base(models.Model):
     """Base Fields"""
@@ -42,8 +42,8 @@ class Product(models.Model):
     def get_absolute_url(self):
         pass
 
-    def __unicode__(self):
-        return self.name
+    # def __unicode__(self):
+    #     return self.name
 
 
 class Supplier(models.Model):

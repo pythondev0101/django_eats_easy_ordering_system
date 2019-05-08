@@ -14,7 +14,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Product
-        fields = ('name','description')
+        fields = ('id','name','image')
 
 
 class HRSerializer(serializers.ModelSerializer):
@@ -29,14 +29,14 @@ class HRSerializer(serializers.ModelSerializer):
 class HRActiveSerializer(serializers.ModelSerializer):
     class Meta:
         model= OrderForWeek
-        fields = ('id',)
+        fields = "__all__"
 
 
 class OrderlineSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = OrderLine
-        fields = ('order','product')
+        fields = ('order','product','day')
 
 class OrderSerializer(serializers.ModelSerializer):
     orderlines = OrderlineSerializer(source="orderline_set",many=True)
@@ -49,5 +49,6 @@ class OrderSerializer(serializers.ModelSerializer):
         lines = validated_data.pop('orderline_set')
         instance = Order.objects.create(**validated_data)
         for data in lines:
+            data['order'] = instance
             profile = OrderLine.objects.create(**data)
         return instance

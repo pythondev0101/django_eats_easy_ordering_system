@@ -43,7 +43,7 @@
             <tbody>
             {% for order in order_list %}
             <tr class="{% cycle 'row1' 'row2' %}">
-                <td class="field-name"><a href="{% url 'order-detail' order.pk %}">{{ order.name }}</a></td>
+                <td class="field-name"><a href="{% url 'myorder-detail' order.pk %}">{{ order.name }}</a></td>
                 <td class="field-date">{{ order.date }}</td>
                 <td class="field-total">{{ order.total }}</td>
                 <td class="field-supplier">{{ order.supplier_id.name }}</td>

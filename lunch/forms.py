@@ -8,7 +8,7 @@ from django.forms import inlineformset_factory,RadioSelect
 class OrderLineForm(ModelForm):
     class Meta:
         model = OrderLine
-        fields = ('product',)
+        fields = ('product','day')
         widgets = {
             'product': RadioSelect(attrs={'cols': 80, 'rows': 20}),
         }

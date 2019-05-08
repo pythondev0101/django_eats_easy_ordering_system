@@ -10,46 +10,19 @@
     <h4 class="detail-status">Status: {{ order.status }}</h4>
     <hr>
     <div class="day">
-            <table id="customers">
-  <tr>
-    <th>Day</th>
-    <th>Order</th>
-    <th>Action</th>
+        <table id="customers">
+            <tr>
+                <th>Day</th>
+                <th>Order</th>
+            </tr>
 
-  </tr>
-
-  <tr>
-    <td>Monday</td>
-    <td>Caldereta</td>
-    <td><button>delete</button></td>
-  </tr>
-  <tr>
-    <td>Tuesday</td>
-    <td>Adobo</td>
-    <td><button>delete</button></td>
-  </tr>
-  <tr>
-    <td>Wednesday</td>
-    <td>Menudo</td>
-    <td><button>delete</button></td>
-  </tr>
-  <tr>
-    <td>Thursday</td>
-    <td>Sinigang</td>
-    <td><button>delete</button></td>
-  </tr>
-  <tr>
-    <td>Friday</td>
-    <td>Tapa</td>
-    <td><button>delete</button></td>
-  </tr>
-
-</table>
-
-
-
+            {% for order in orderlines %}
+            <tr>
+                <td>{{ order.day.title }}</td>
+                <td>{{ order.product.name }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
 </div>
-
-
-
 {% endblock action %}

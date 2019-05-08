@@ -3,6 +3,26 @@
 {% block extrahead %}
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/order.css' %}">
+<style>
+    /* HIDE RADIO */
+[type=radio] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* IMAGE STYLES */
+[type=radio] + img {
+  cursor: pointer;
+}
+
+/* CHECKED STYLES */
+[type=radio]:checked + h1 {
+  outline: 2px solid blue;
+  color: blue;
+}
+</style>
 {% endblock extrahead %}
 
 {% block action %}
@@ -10,6 +30,7 @@
 
 <div class="col-sm-9">
     {% if order %}
+    {% if not check %}
     <form method="post">
         <h4 id="form_name" class="detail-name">{{ form.name.as_hidden }}</h4>
         <h4 class="detail-status">Status: NEW</h4>
@@ -20,21 +41,26 @@
         <input type="submit" value="Save" class="default">
         <hr>
                  {{ orderlines.management_form }}
+            <!--{% for orderline in orderlines.forms %}-->
+            <!--{{ orderline.as_p }}-->
+            <!--{% endfor %}-->
+
         <h2>Monday</h2>
         <div class="row">
             <fieldset id="mondaygroup">
                 {% for food in mondays %}
-
                 <div class="column">
                     <div class="box">
-                        <img src="{{ MEDIA_URL }} {{ food.image.url }}" style="width:100%">
+                        <label>
+                        <img id="mon_{{ food.id }}" src="{{ MEDIA_URL }} {{ food.image.url }}" style="width:100%">
+                        <input type="radio" id="id_orderline_set-0-product_{{forloop.counter0}}" name="orderline_set-0-product" value="{{ food.id }}">
                         <h1 class="des">{{ food.name}} </h1>
-                        <p>
-                            <input type="radio" id="id_orderline_set-0-product_{{forloop.counter0}}" name="orderline_set-0-product" value="{{ food.id }}">
-                        </p>
+
+                        </labeL>
                     </div>
                 </div>
                 {% endfor %}
+                <input type="hidden" name="orderline_set-0-day" id="id_orderline_set-0-day" maxlength="10">
             </fieldset>
         </div>
         <h2>Tuesday</h2>
@@ -43,14 +69,16 @@
                 {% for food in tuesdays %}
                 <div class="column">
                     <div class="box">
-                        <img src="{{ MEDIA_URL }} {{ food.image.url }}" style="width:100%">
+                        <label>
+                        <img id="tue_{{ food.id }}" src="{{ MEDIA_URL }} {{ food.image.url }}" style="width:100%">
+                        <input type="radio" id="id_orderline_set-1-product_{{forloop.counter0}}" name="orderline_set-1-product" value="{{ food.id }}">
                         <h1 class="des">{{ food.name}} </h1>
-                        <p>
-                            <input type="radio" id="id_orderline_set-1-product_{{forloop.counter0}}" name="orderline_set-1-product" value="{{ food.id }}">
-                        </p>
+                        </label>
                     </div>
                 </div>
                 {% endfor %}
+                <input type="hidden" name="orderline_set-1-day" id="id_orderline_set-1-day" maxlength="10">
+
             </fieldset>
         </div>
         <h2>Wednesday</h2>
@@ -59,14 +87,17 @@
                 {% for food in wednesdays %}
                 <div class="column">
                     <div class="box">
-                        <img src="{{ MEDIA_URL }} {{ food.image.url }}" style="width:100%">
+                        <label>
+                        <img id="wed_{{ food.id }}" src="{{ MEDIA_URL }} {{ food.image.url }}" style="width:100%">
+                        <input type="radio" id="id_orderline_set-2-product_{{forloop.counter0}}" name="orderline_set-2-product" value="{{ food.id }}">
                         <h1 class="des">{{ food.name}} </h1>
-                        <p>
-                            <input type="radio" id="id_orderline_set-2-product_{{forloop.counter0}}" name="orderline_set-2-product" value="{{ food.id }}">
-                        </p>
+
+                        </label>
                     </div>
                 </div>
                 {% endfor %}
+                <input type="hidden" name="orderline_set-2-day" id="id_orderline_set-2-day" maxlength="10">
+
             </fieldset>
         </div>
         <h2>Thursday</h2>
@@ -76,14 +107,16 @@
                 {% for food in thursdays %}
                 <div class="column">
                     <div class="box">
-                        <img src="{{ MEDIA_URL }} {{ food.image.url }}" style="width:100%">
+                        <label>
+                        <img id="thu_{{ food.id }}" src="{{ MEDIA_URL }} {{ food.image.url }}" style="width:100%">
+                        <input type="radio" id="id_orderline_set-3-product_{{forloop.counter0}}" name="orderline_set-3-product" value="{{ food.id }}">
                         <h1 class="des">{{ food.name}} </h1>
-                        <p>
-                            <input type="radio" id="id_orderline_set-3-product_{{forloop.counter0}}" name="orderline_set-3-product" value="{{ food.id }}">
-                        </p>
+
+                        </label>
                     </div>
                 </div>
                 {% endfor %}
+                        <input type="hidden" name="orderline_set-3-day" id="id_orderline_set-3-day" maxlength="10">
             </fieldset>
         </div>
 
@@ -93,24 +126,24 @@
                 {% for food in fridays %}
                 <div class="column">
                     <div class="box">
-                        <img src="{{ MEDIA_URL }} {{ food.image.url }}" style="width:100%">
+                        <label>
+                        <img id="fri_{{ food.id }}" src="{{ MEDIA_URL }} {{ food.image.url }}" style="width:100%">
+                        <input type="radio" id="id_orderline_set-4-product_{{forloop.counter0}}" name="orderline_set-4-product" value="{{ food.id }}">
                         <h1 class="des">{{ food.name}} </h1>
-                        <p>
-                            <input type="radio" id="id_orderline_set-4-product_{{forloop.counter0}}" name="orderline_set-4-product" value="{{ food.id }}">
-                        </p>
+                        </label>
                     </div>
                 </div>
                 {% endfor %}
+                <input type="hidden" name="orderline_set-4-day" id="id_orderline_set-4-day" maxlength="10">
             </fieldset>
-            <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
         </div>
     </form>
+    {% else %}
+    LOOK LIKE YOU'VE ORDERED ALREADY
+    {% endif %}
     {% else %}
     THERE'S NO ACTIVE ORDERS FROM HR
     {% endif %}
 </div>
-
-<script src="{% static 'js/top.js' %}"></script>
-
 
 {% endblock action %}
