@@ -124,3 +124,5 @@ venv.bak/
 */*/__pycache__/
 
 */__pycache__/
+
+eats_easy_ordering_system/settings.py
