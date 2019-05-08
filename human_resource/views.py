@@ -2,9 +2,13 @@ from django import forms
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView
 from lunch.models import Order, OrderLine
+from .models import OrderForWeek
 from django.shortcuts import render
 from functools import partial
 import datetime
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+# from .forms import WeekOrderLineFormSet
+
 # Create your views here.
 
 DateInput = partial(forms.DateInput, {'class': 'datepicker'})
@@ -39,6 +43,47 @@ class HRView(ListView):
         context['form'].fields['start_date'].initial = last_monday
         context['form'].fields['end_date'].initial = last_monday
         return context
+
+
+class CreateWeekOrderView(CreateView):
+    model = OrderForWeek
+    fields = '__all__'
+    template_name = 'human_resource/week_order_form.html'
+
+    # def get_context_data(self, **kwargs):
+    #     data = super(CreateWeekOrderView, self).get_context_data(**kwargs)
+    #     if self.request.POST:
+    #         data['weekorderlines'] = WeekOrderLineFormSet(self.request.POST)
+    #     else:
+    #         data['weekorderlines'] = WeekOrderLineFormSet()
+    #     return data
+
+    # def form_valid(self, form):
+    #     total_price = 0
+    #     form.instance.total = 0  # this is for initial data only
+    #     form.instance.date = datetime.datetime.now() # this is for initial data only
+    #     context = self.get_context_data()
+    #     orderlines = context['orderlines']
+    #     # pprint(orderlines.data)
+    #     # for key, val in orderlines.data.items():
+    #     #     print(key, "==",val)
+    #     #     if key:
+    #     if orderlines.is_valid():
+    #         for f in orderlines:
+    #             cd = f.cleaned_data
+    #             if cd:
+    #                 (vars(cd['product']))
+    #                 total_price = total_price + cd['product'].price
+    #
+    #         self.object = form.save()
+    #         orderlines.instance = self.object
+    #         orderlines.save()
+    #         #ORDER FORM
+    #         form.instance.user = self.request.user
+    #         form.instance.total = total_price
+    #         form.instance.save()
+    #     return super(CreateOrderView, self).form_valid(form)
+
 # class MyView(ListView):
 #     model = Update
 #     template_name = "updates/update.html"

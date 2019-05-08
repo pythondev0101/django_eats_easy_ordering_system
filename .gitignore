@@ -105,3 +105,9 @@ venv.bak/
 
 # Pycharm folder
 .idea/
+
+# Text backup files
+*.bak
+
+# Database
+*.sqlite3

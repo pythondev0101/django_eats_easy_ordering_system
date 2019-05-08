@@ -2,14 +2,16 @@ from django import forms
 from django.forms import ModelForm
 from django.core.exceptions import ValidationError
 from .models import Order,OrderLine
-from django.forms import inlineformset_factory
+from django.forms import inlineformset_factory,RadioSelect
 
 
 class OrderLineForm(ModelForm):
     class Meta:
         model = OrderLine
-        fields = '__all__'
-
+        fields = ('product','day')
+        widgets = {
+            'product': RadioSelect(attrs={'cols': 80, 'rows': 20}),
+        }
 
 OrderLineFormSet = inlineformset_factory(Order,OrderLine,form=OrderLineForm, extra=5)
 
