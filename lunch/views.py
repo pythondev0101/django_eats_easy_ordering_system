@@ -1,7 +1,9 @@
 from django.core.exceptions import ValidationError
 from django.shortcuts import render, render_to_response, get_object_or_404
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
+from django.core import serializers
+
 from .models import Order, OrderLine
 from django.views.generic import DetailView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -10,10 +12,18 @@ from .forms import OrderLineFormSet
 import datetime
 from pprint import pprint
 from human_resource.models import OrderForWeek
+from django.http import JsonResponse
 
-
+from core.models import Product
 # Create your views here.
 
+def get_product_detail(request):
+    pid = request.GET.get('id', None)
+    obj = Product.objects.get(id=pid)
+    data = {
+        'product': serializers.serialize('json',[obj])
+    }
+    return JsonResponse(data)
 
 class OrdersOfUserListView(LoginRequiredMixin, ListView):
     model = Order
@@ -57,6 +67,10 @@ class CreateOrderView(CreateView):
     model = Order
     fields = ('name',)
     template_name = 'lunch/order_form.html'
+    success_message = "Order success"
+
+    def get_success_url(self):
+        return reverse('myorder-detail', args=(self.object.id,))
 
     def get_context_data(self, **kwargs):
         data = super(CreateOrderView, self).get_context_data(**kwargs)

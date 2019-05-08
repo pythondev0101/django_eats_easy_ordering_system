@@ -21,13 +21,13 @@ from django.conf.urls import url
 from django.conf import settings
 from core.views import UserViewSet,ProductViewSet,HRViewSet,OrderViewSet
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
-
+from lunch.views import get_product_detail
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'products',ProductViewSet)
 router.register(r'hr',HRViewSet)
-router.register(r'order',OrderViewSet)
+router.register(r'orders',OrderViewSet)
 urlpatterns = [
     path('', RedirectView.as_view(url='/web/', permanent=True)),
     path('admin/', admin.site.urls),
@@ -42,6 +42,8 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path(r'api-token-auth/', obtain_jwt_token),
     path(r'api-token-refresh/', refresh_jwt_token),
+    path('ajax/getproduct/', get_product_detail, name='get_product_detail'),
+
 ]
 
 # For debug-toolbar

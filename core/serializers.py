@@ -29,7 +29,7 @@ class HRSerializer(serializers.ModelSerializer):
 class HRActiveSerializer(serializers.ModelSerializer):
     class Meta:
         model= OrderForWeek
-        fields = ('id',)
+        fields = "__all__"
 
 
 class OrderlineSerializer(serializers.ModelSerializer):
