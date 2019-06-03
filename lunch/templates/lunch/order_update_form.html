@@ -3,6 +3,27 @@
 {% block extrahead %}
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/order.css' %}">
+<style>
+    /* HIDE RADIO */
+[type=radio] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* IMAGE STYLES */
+[type=radio] + img {
+  cursor: pointer;
+}
+
+/* CHECKED STYLES */
+[type=radio]:checked + h1 {
+  outline: 2px solid blue;
+  color: blue;
+}
+</style>
+
 {% endblock extrahead %}
 
 {% block action %}
@@ -12,19 +33,108 @@
         {% if order %}
 
     <form method="post">
-        <h4 id="form_name" class="detail-name">{{ form.name.as_hidden }}</h4>
+                <h4 id="form_name" class="detail-name">{{ form.name.as_hidden }}</h4>
         <h4 class="detail-status">Status: NEW</h4>
 
         <h4 style="float: right;padding-right: 250px;">Order Info: {{ order.name }}</h4>
         {% csrf_token %}
         <br>
-        <input type="submit" value="Save" class="default" name="_save">
+        <input type="submit" value="Save" class="default">
         <hr>
                  {{ orderlines.management_form }}
-            {% for orderline in orderlines.forms %}
-            {{ orderline.as_p }}
-            {% endfor %}
 
+        <h2>Monday</h2>
+        <div class="row">
+            <fieldset id="mondaygroup">
+                {% for food in mondays %}
+                <div class="column">
+                    <div class="box">
+                        <label>
+                        <img id="mon_{{ food.id }}" src="{{ MEDIA_URL }} {{ food.image.url }}" style="width:100%">
+                        <input {% if food.id in cp %} checked {% endif %} type="radio" id="id_orderline_set-0-product_{{forloop.counter0}}" name="orderline_set-0-product" value="{{ food.id }}">
+                        <h1 class="des">{{ food.name}} </h1>
+                        <a href="{% url 'comment' food.pk %}" onclick="return popitup('{% url 'comment' food.pk %}')">Comments</a>
+                        </labeL>
+                    </div>
+                </div>
+                {% endfor %}
+                <input type="hidden" name="orderline_set-0-day" id="id_orderline_set-0-day" maxlength="10">
+            </fieldset>
+        </div>
+        <h2>Tuesday</h2>
+        <div class="row">
+            <fieldset id="tuesdaygroup">
+                {% for food in tuesdays %}
+                <div class="column">
+                    <div class="box">
+                        <label>
+                        <img id="tue_{{ food.id }}" src="{{ MEDIA_URL }} {{ food.image.url }}" style="width:100%">
+                        <input {% if food.id in cp %} checked {% endif %} type="radio" id="id_orderline_set-1-product_{{forloop.counter0}}" name="orderline_set-1-product" value="{{ food.id }}">
+                        <h1 class="des">{{ food.name}} </h1>
+                        </label>
+                    </div>
+                </div>
+                {% endfor %}
+                <input type="hidden" name="orderline_set-1-day" id="id_orderline_set-1-day" maxlength="10">
+
+            </fieldset>
+        </div>
+        <h2>Wednesday</h2>
+        <div class="row">
+            <fieldset id="wednesdaygroup">
+                {% for food in wednesdays %}
+                <div class="column">
+                    <div class="box">
+                        <label>
+                        <img id="wed_{{ food.id }}" src="{{ MEDIA_URL }} {{ food.image.url }}" style="width:100%">
+                        <input {% if food.id in cp %} checked {% endif %} type="radio" id="id_orderline_set-2-product_{{forloop.counter0}}" name="orderline_set-2-product" value="{{ food.id }}">
+                        <h1 class="des">{{ food.name}} </h1>
+
+                        </label>
+                    </div>
+                </div>
+                {% endfor %}
+                <input type="hidden" name="orderline_set-2-day" id="id_orderline_set-2-day" maxlength="10">
+
+            </fieldset>
+        </div>
+        <h2>Thursday</h2>
+        <div class="row">
+            <fieldset id="thursdaygroup">
+
+                {% for food in thursdays %}
+                <div class="column">
+                    <div class="box">
+                        <label>
+                        <img id="thu_{{ food.id }}" src="{{ MEDIA_URL }} {{ food.image.url }}" style="width:100%">
+                        <input {% if food.id in cp %} checked {% endif %} type="radio" id="id_orderline_set-3-product_{{forloop.counter0}}" name="orderline_set-3-product" value="{{ food.id }}">
+                        <h1 class="des">{{ food.name}} </h1>
+
+                        </label>
+                    </div>
+                </div>
+                {% endfor %}
+                        <input {% if food.id in cp %} checked {% endif %} type="hidden" name="orderline_set-3-day" id="id_orderline_set-3-day" maxlength="10">
+            </fieldset>
+        </div>
+
+        <h2>Friday</h2>
+        <div class="row">
+            <fieldset id="fridaygroup">
+                {% for food in fridays %}
+                <div class="column">
+                    <div class="box">
+                        <label>
+                        <img id="fri_{{ food.id }}" src="{{ MEDIA_URL }} {{ food.image.url }}" style="width:100%">
+                        <input {% if food.id in cp %} checked {% endif %} type="radio" id="id_orderline_set-4-product_{{forloop.counter0}}" name="orderline_set-4-product" value="{{ food.id }}">
+                        <h1 class="des">{{ food.name}} </h1>
+                        </label>
+                    </div>
+                </div>
+                {% endfor %}
+                <input type="hidden" name="orderline_set-4-day" id="id_orderline_set-4-day" maxlength="10">
+            </fieldset>
+        </div>
     </form>
     {% else %}
     YOUR ORDER WAS ALREADY ORDERED

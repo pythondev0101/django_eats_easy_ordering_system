@@ -1,0 +1,41 @@
+{% extends "easy_pdf/base.html" %}
+
+{% block extra_style %}
+ <style>
+table, td, th {
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 5px;
+}
+</style>
+{% endblock %}
+
+
+{% block content %}
+<h2>Top Food Orders</h2>
+<p>Order: {{ ordername }}</p>
+<p>Total: {{ count }}</p>
+<table>
+  <tr>
+    <th>Number</th>
+    <th>Food</th>
+    <th>Total</th>
+  </tr>
+    {% for food,count in orders %}
+  <tr>
+    <td>{{ forloop.counter }}</td>
+    <td>{{ food }}</td>
+    <td>{{ count }}</td>
+  </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

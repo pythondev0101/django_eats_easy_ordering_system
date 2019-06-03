@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'lunch.apps.LunchConfig',
     'human_resource.apps.HumanResourceConfig',
     'dashboard.apps.DashboardConfig',
+    'supplier.apps.SupplierConfig',
+    'easy_pdf',
 ]
 
 MIDDLEWARE = [
@@ -171,7 +173,7 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '4VyVrGZudJbe_2sw8ynPcdjB'
 
 LOGIN_URL = 'login'
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/lunch/order/create/'
 
 LOGOUT_REDIRECT_URL = '/'
 

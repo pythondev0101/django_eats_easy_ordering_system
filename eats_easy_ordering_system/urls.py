@@ -29,13 +29,14 @@ router.register(r'products',ProductViewSet)
 router.register(r'hr',HRViewSet)
 router.register(r'orders',OrderViewSet)
 urlpatterns = [
-    path('', RedirectView.as_view(url='/web/', permanent=True)),
+    path('', RedirectView.as_view(url='/lunch/order/create', permanent=True)),
     path('admin/', admin.site.urls),
     path('web/', include('core.urls')),
-    path('web/lunch/', include('lunch.urls')),
-    path('web/user/', include('django.contrib.auth.urls')),
-    path('web/dashboard/', include('dashboard.urls')),
-    path('web/hr/', include('human_resource.urls')),
+    path('lunch/', include('lunch.urls')),
+    path('user/', include('django.contrib.auth.urls')),
+    path('dashboard/', include('dashboard.urls')),
+    path('hr/', include('human_resource.urls')),
+    path('supplier/',include('supplier.urls')),
     # Wire up our API using automatic URL routing.
     # Additionally, we include login URLs for the browsable API.
     url(r'^api/', include(router.urls)),
@@ -43,7 +44,6 @@ urlpatterns = [
     path(r'api-token-auth/', obtain_jwt_token),
     path(r'api-token-refresh/', refresh_jwt_token),
     path('ajax/getproduct/', get_product_detail, name='get_product_detail'),
-
 ]
 
 # For debug-toolbar

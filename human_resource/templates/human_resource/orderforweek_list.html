@@ -1,13 +1,23 @@
-{% extends 'hr_base_template.html' %}
-{% load static %}
+{% extends "hr_base_template.html" %}
+{% block extrahead %}
+<script>
+$(document).ready(function(){
+    $("select").change(function(){
+        value = $("#select_supply").val();
+        $("#create_button").attr("href", "{% url 'hr_create_order' %}?supply="+ value);
+    });
+});
+</script>
+{% endblock extrahead %}
 {% block action %}
-<div class="col-sm-9">
-    <h4>Order for {Date}</h4>
-    <form id="order_form" method="get">
-    {{ form.start_date }}
-    to
-    {{ form.end_date }}
-    </form>
+    <div class="col-sm-9">
+            <a id="create_button" href="" class="btn btn-info" role="button">Create</a>
+        <select id="select_supply">
+            <option value="" disabled selected>Choose what Supplier's supply</option>
+            {% for obj in supplies %}
+            <option value="{{ obj.id }}">{{ obj.name }}</option>
+            {% endfor %}
+        </select>
     <hr style="margin-bottom: 0px;">
     <div class="results">
         <table id="result_list">
@@ -19,15 +29,9 @@
                     </div>
                     <div class="clear"></div>
                 </th>
-                <th scope="col" class="sortable column-user">
+                <th scope="col" class="sortable column-date">
                     <div class="text">
-                        <a>User</a>
-                    </div>
-                    <div class="clear"></div>
-                </th>
-                <th scope="col" class="sortable column-total">
-                    <div class="text">
-                        <a>Total</a>
+                        <a>Date</a>
                     </div>
                     <div class="clear"></div>
                 </th>
@@ -43,23 +47,15 @@
                     </div>
                     <div class="clear"></div>
                 </th>
-                                <th scope="col" class="sortable column-status">
-                    <div class="text">
-                        <a>Action</a>
-                    </div>
-                    <div class="clear"></div>
-                </th>
             </tr>
             </thead>
             <tbody>
-            {% for order in order_list %}
+            {% for order in orderforweek_list %}
             <tr class="{% cycle 'row1' 'row2' %}">
-                <td class="field-name"><a href="{% url 'order-detail' order.pk %}">{{ order.name }}</a></td>
-                <td class="field-user">{{ order.user.username }}</td>
-                <td class="field-total">{{ order.total }}</td>
-                <td class="field-supplier">{{ order.supplier_id.name }}</td>
+                <td class="field-name"><a href="{% url 'updateweekorder' order.pk %}">{{ order.name }}</a></td>
+                <td class="field-date">{{ order.date }}</td>
+                <td class="field-supplier">{{ order.supply.name }}</td>
                 <td class="field-status">{{ order.status }}</td>
-                <td><a href="#" class="deletelink">Cancel</a></td>
             </tr>
             {% endfor %}
             </tbody>

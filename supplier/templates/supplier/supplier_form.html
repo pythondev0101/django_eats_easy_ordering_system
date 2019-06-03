@@ -1,0 +1,32 @@
+{% extends "supplier_base_template.html" %}
+{% block extrahead %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/order.css' %}">
+{% endblock extrahead %}
+
+
+{% block action %}
+<div class="col-sm-9">
+    <form method="post">
+        {% csrf_token %}
+        <br>
+        <input type="submit" value="Save" class="default" name="_save">
+        <hr>
+        <div class="row">
+                {% for product in products %}
+                <div class="column">
+                    <div class="box">
+                        <label>
+                        <img id="mon_{{ product.id }}" src="{{ MEDIA_URL }} {{ product.image.url }}" style="width:100%">
+                        <input type="radio" id="id_orderline_set-0-product_{{forloop.counter0}}" name="orderline_set-0-product" value="{{ food.id }}">
+                        <h1 class="des">{{ product.name}} </h1>
+                        </labeL>
+                    </div>
+                </div>
+                {% endfor %}
+                <input type="hidden" name="orderline_set-0-day" id="id_orderline_set-0-day" maxlength="10">
+        </div>
+    </form>
+</div>
+
+{% endblock action %}

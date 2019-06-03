@@ -3,6 +3,9 @@ from django.db.models import signals
 from django.dispatch import receiver
 from django.contrib.auth.models import User
 import logging
+from django.contrib.auth.models import User
+
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -39,8 +42,8 @@ class Product(models.Model):
         """Function returning a string representation of the product object"""
         return self.name
 
-    def get_absolute_url(self):
-        pass
+    # def get_absolute_url(self):
+    #     pass
 
     # def __unicode__(self):
     #     return self.name
@@ -54,6 +57,7 @@ class Supplier(models.Model):
     phone = models.CharField(max_length=50,verbose_name='Phone',help_text="Enter the supplier's phone",blank=True)
     fax = models.CharField(max_length=50,verbose_name='Fax',help_text="Enter the supplier's fax",blank=True)
     email = models.CharField(max_length=50,verbose_name='Email',help_text="Enter the supplier's email",blank=True)
+    user = models.ManyToManyField(User,related_name="supplier_user")
 
     def __str__(self):
         """Function returning a string representation of the supplier object"""
@@ -74,3 +78,12 @@ class Category(Base):
     def __str__(self):
         """Function returning a string representation of the category object"""
         return self.name
+
+class FeedBack(models.Model):
+    product = models.ForeignKey('core.Product',on_delete=models.SET_NULL,null=True)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL,null=True)
+    comment = models.TextField(max_length=1000, verbose_name="Comment",
+                                   help_text="Enter your feedback", null=True, )
+    date = models.DateTimeField('Date')
+    # rating = models. TODO
+

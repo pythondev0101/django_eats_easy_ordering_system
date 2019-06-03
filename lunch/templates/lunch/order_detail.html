@@ -8,6 +8,8 @@
 <div class="col-sm-9">
     <h4 class="detail-name">{{ order.name }}</h4>
     <h4 class="detail-status">Status: {{ order.status }}</h4>
+    {% if order.weekorder.status == "active" %}<a href="{% url 'order-update' order.pk %}" class="btn btn-info" role="button">Update</a>{% endif %}
+
     <hr>
     <div class="day">
         <table id="customers">

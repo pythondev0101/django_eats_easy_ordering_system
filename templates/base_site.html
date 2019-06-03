@@ -25,11 +25,19 @@
 {% block breadcrumbs %}
 <div class="breadcrumbs">
     {% if user.is_authenticated %}
+    {% if not perms.supplier.can_access_supplier %}
     <a href="{% url 'order-create' %}" style="margin-left:10px">Lunch</a>
-    {% if perms.human_resource.can_access_hr %}
-    <a href="/admin/human_resource" style="margin-left:10px">Human Resource</a>
     {% endif %}
+    {% if perms.human_resource.can_access_hr %}
+    <a href="{% url 'human_resource' %}" style="margin-left:10px">Human Resource</a>
+    <a href="{% url 'hr_reports' %}" style="margin-left:10px">Reports</a>
+    {% endif %}
+    {% if perms.supplier.can_access_supplier %}
+    <a href="{% url 'supplier' %}" style="margin-left:10px">Supplier Site</a>
+    {% endif %}
+    {% if user.is_staff or user.is_superuser %}
     <a href="{% url 'admin:index' %}" style="margin-left:10px">Settings</a>
+    {% endif %}
     {% else %}
     <a href="{% url 'login' %}">Log in</a>
     {% endif %}
