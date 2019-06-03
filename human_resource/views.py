@@ -101,7 +101,7 @@ class OrderPdfView(PDFTemplateView):
                 orders = OrderLine.objects.select_related("order").filter(order__weekorder=order).filter(product=food).filter(day=day)
 
             context["orders"] = orders
-            order = Order.objects.get(pk=order)
+            order = OrderForWeek.objects.get(pk=order)
             food = Product.objects.get(pk=food)
             context["ordername"]= order.name
             context["food"] =food.name
@@ -127,7 +127,7 @@ class OrderPdfView(PDFTemplateView):
             ncs = [(k, nc[k]) for k in sorted(nc, key=nc.get, reverse=True)]
             print(ncs)
             context["orders"] = ncs
-            order = Order.objects.get(pk=order)
+            order = OrderForWeek.objects.get(pk=order)
             context["ordername"]= order.name
             context["count"] = orders.count()
 
