@@ -112,7 +112,6 @@ venv.bak/
 # Database
 *.sqlite3
 
-
 *.log
 
 *.pot
@@ -124,5 +123,3 @@ venv.bak/
 */*/__pycache__/
 
 */__pycache__/
-
-eats_easy_ordering_system/settings.py

@@ -55,7 +55,7 @@
                         <img id="mon_{{ food.id }}" src="{{ MEDIA_URL }} {{ food.image.url }}" style="width:100%">
                         <input type="radio" id="id_orderline_set-0-product_{{forloop.counter0}}" name="orderline_set-0-product" value="{{ food.id }}">
                         <h1 class="des">{{ food.name}} </h1>
-
+                        <a href="{% url 'comment' food.pk %}" onclick="return popitup('{% url 'comment' food.pk %}')">Comments</a>
                         </labeL>
                     </div>
                 </div>
@@ -73,6 +73,7 @@
                         <img id="tue_{{ food.id }}" src="{{ MEDIA_URL }} {{ food.image.url }}" style="width:100%">
                         <input type="radio" id="id_orderline_set-1-product_{{forloop.counter0}}" name="orderline_set-1-product" value="{{ food.id }}">
                         <h1 class="des">{{ food.name}} </h1>
+                        <a href="{% url 'comment' food.pk %}" onclick="return popitup('{% url 'comment' food.pk %}')">Comments</a>
                         </label>
                     </div>
                 </div>
@@ -91,6 +92,8 @@
                         <img id="wed_{{ food.id }}" src="{{ MEDIA_URL }} {{ food.image.url }}" style="width:100%">
                         <input type="radio" id="id_orderline_set-2-product_{{forloop.counter0}}" name="orderline_set-2-product" value="{{ food.id }}">
                         <h1 class="des">{{ food.name}} </h1>
+                        <a href="{% url 'comment' food.pk %}" onclick="return popitup('{% url 'comment' food.pk %}')">Comments</a>
+
 
                         </label>
                     </div>
@@ -111,6 +114,7 @@
                         <img id="thu_{{ food.id }}" src="{{ MEDIA_URL }} {{ food.image.url }}" style="width:100%">
                         <input type="radio" id="id_orderline_set-3-product_{{forloop.counter0}}" name="orderline_set-3-product" value="{{ food.id }}">
                         <h1 class="des">{{ food.name}} </h1>
+                        <a href="{% url 'comment' food.pk %}" onclick="return popitup('{% url 'comment' food.pk %}')">Comments</a>
 
                         </label>
                     </div>
@@ -130,6 +134,7 @@
                         <img id="fri_{{ food.id }}" src="{{ MEDIA_URL }} {{ food.image.url }}" style="width:100%">
                         <input type="radio" id="id_orderline_set-4-product_{{forloop.counter0}}" name="orderline_set-4-product" value="{{ food.id }}">
                         <h1 class="des">{{ food.name}} </h1>
+                        <a href="{% url 'comment' food.pk %}" onclick="return popitup('{% url 'comment' food.pk %}')">Comments</a>
                         </label>
                     </div>
                 </div>
@@ -139,11 +144,25 @@
         </div>
     </form>
     {% else %}
-    LOOK LIKE YOU'VE ORDERED ALREADY
+    LOOKS LIKE YOU'VE ORDERED ALREADY
     {% endif %}
     {% else %}
     THERE'S NO ACTIVE ORDERS FROM HR
     {% endif %}
 </div>
+
+<script language="javascript" type="text/javascript">
+<!--
+function popitup(url) {
+    newwindow=window.open(url,'{{title}}','height=500,width=600');
+    if (window.focus) {
+    newwindow.focus()
+    }
+    return false;
+}
+
+// -->
+</script>
+
 
 {% endblock action %}

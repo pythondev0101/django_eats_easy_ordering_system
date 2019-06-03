@@ -1,0 +1,26 @@
+{% extends "supplier_base_template.html" %}
+{% block extrahead %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/order.css' %}">
+{% endblock extrahead %}
+
+
+{% block action %}
+<div class="col-sm-9">
+    <a href="{% url 'supplier_update' data.pk %}" class="btn btn-info" role="button">Update</a>
+        <hr>
+        <div class="row">
+                {% for product in data.products.all %}
+                <div class="column">
+                    <div class="box">
+                        <label>
+                        <img id="mon_{{ product.id }}" src="{{ MEDIA_URL }} {{ product.image.url }}" style="width:100%">
+                        <h1 class="des">{{ product.name}} </h1>
+                        </labeL>
+                    </div>
+                </div>
+                {% endfor %}
+        </div>
+</div>
+
+{% endblock action %}

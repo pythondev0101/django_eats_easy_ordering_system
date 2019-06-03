@@ -28,7 +28,7 @@
                 </th>
                 <th scope="col" class="sortable column-supplier">
                     <div class="text">
-                        <a>Supplier</a>
+                        <a>Order</a>
                     </div>
                     <div class="clear"></div>
                 </th>
@@ -46,7 +46,7 @@
                 <td class="field-name"><a href="{% url 'myorder-detail' order.pk %}">{{ order.name }}</a></td>
                 <td class="field-date">{{ order.date }}</td>
                 <td class="field-total">{{ order.total }}</td>
-                <td class="field-supplier">{{ order.supplier_id.name }}</td>
+                <td class="field-supplier">{{ order.weekorder.name }}</td>
                 <td class="field-status">{{ order.status }}</td>
             </tr>
             {% endfor %}

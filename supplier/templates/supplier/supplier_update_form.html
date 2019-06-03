@@ -1,0 +1,44 @@
+{% extends "supplier_base_template.html" %}
+{% block extrahead %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/order.css' %}">
+
+{% endblock extrahead %}
+
+
+{% block action %}
+<div class="col-sm-9">
+    <form method="post">
+        {% csrf_token %}
+        <br>
+        <input type="submit" value="Save" class="default" name="_save">
+        <hr>
+
+               <!--<select multiple="multiple" name="products" id="id_products">-->
+            <!--{% for cat in products %}-->
+            <!--{% if cat.id in sp %}<option selected value="{{ cat.id }}">{{ cat }}</option> {% endif %}-->
+            <!--{% endfor %}-->
+        <!--</select>-->
+<!--if sala in beer.salas_set.all():-->
+    <!--#do stuff:-->
+<!--else:-->
+    <!--# do other stuff-->
+
+        <div class="row">
+                {% for product in products %}
+                <div class="column">
+                    <div class="box">
+                        <label>
+                        <img id="mon_{{ product.id }}" src="{{ MEDIA_URL }} {{ product.image.url }}" style="width:100%">
+                        <input {% if product.id in sp %} checked {% endif %} type="checkbox" name="products" value="{{product.id}}">
+                        <a href="{% url 'editproduct' product.id %}">Edit Product</a>
+                            <h1 class="des">{{ product.name}} </h1>
+                        </labeL>
+                    </div>
+                </div>
+                {% endfor %}
+        </div>
+    </form>
+</div>
+
+{% endblock action %}

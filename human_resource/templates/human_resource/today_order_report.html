@@ -1,0 +1,24 @@
+{% extends "reports.html" %}
+
+{% block extrahead %}
+<script>
+$(document).ready(function(){
+    $("select").change(function(){
+        value = $(this).val();
+        $("#print_button").attr("href", "{% url 'report_now' %}?order="+ value)
+    });
+});
+</script>
+{% endblock extrahead %}
+{% block action %}
+<div class="col-sm-9">
+    <a id="print_button" href="" class="btn btn-info" role="button">Print</a>
+    <hr>
+        <select class="browser-default custom-select custom-select-lg mb-3" style="width: 100%;">
+            <option value="" disabled selected>Choose what to print</option>
+            {% for o in orders %}
+            <option value="{{ o.id }}">{{ o.name }}</option>
+            {% endfor %}
+        </select>
+</div>
+{% endblock action %}

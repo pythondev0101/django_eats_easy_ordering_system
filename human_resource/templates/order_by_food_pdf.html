@@ -1,0 +1,39 @@
+{% extends "easy_pdf/base.html" %}
+
+{% block extra_style %}
+ <style>
+table, td, th {
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 5px;
+}
+</style>
+{% endblock %}
+
+
+{% block content %}
+<h2>Order by Food</h2>
+<p>{{food}} @ {{ordername}}</p>
+<p>Count: {{ count }}</p>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Day</th>
+  </tr>
+    {% for obj in orders %}
+  <tr>
+    <td>{{ obj.order.user }}</td>
+    <td>{{ obj.day.title }}</td>
+  </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

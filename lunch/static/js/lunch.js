@@ -5,7 +5,9 @@ if (!$){
 $(function(){
     if ($('#form_name').length){
         var new_date = new Date();
-        var name_val = "Order for " + new_date.getMonth() + '_' + new_date.getDate();
+        var up_date = new_date.getMonth() + 1;
+
+        var name_val = "Order for " + up_date + '_' + new_date.getDate();
         $('#id_name').val(name_val);
         $('#id_orderline_set-0-day').val('monday');
         $('#id_orderline_set-1-day').val('tuesday');

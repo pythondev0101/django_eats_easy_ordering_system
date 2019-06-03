@@ -1,0 +1,31 @@
+{% extends "base_site.html" %}
+{% load static %}
+
+{% block extrahead %}
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+{% endblock extrahead %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<div class="container-fluid">
+    <div class="row content">
+        <div class="col-sm-3 sidenav">
+            <h5>Supplier</h5>
+            <ul class="nav nav-pills nav-stacked">
+                <li class="active"><a href="{% url 'supplier' %}">Active Products</a></li>
+                 <li class="active"><a href="{% url 'addproduct' %}">Add product</a></li>
+            </ul>
+            <br>
+        </div>
+        {% block action %}
+
+        {% endblock action %}
+    </div>
+</div>
+{% else %}
+You are not log in
+{% endif %}
+{% endblock content %}
+

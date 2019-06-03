@@ -11,12 +11,12 @@ class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL,null=True)
     total = models.DecimalField(max_digits=9,decimal_places=2,verbose_name='Total')
 
-    ORDER_STATUS = (('new', 'New'),('received', 'Received'),('ordered', 'Ordered'),('cancelled', 'Cancelled'))
+    ORDER_STATUS = (('new', 'New'),('received', 'Received'))
     status = models.CharField(max_length=10,choices=ORDER_STATUS,blank=True, verbose_name='Status',default='new')
     date = models.DateField(null=True)
 
     def get_absolute_url(self):
-        return reverse('order-detail', args=[str(self.id)])
+        return reverse('myorder-detail', args=[str(self.id)])
 
 
 class OrderLine(models.Model):
