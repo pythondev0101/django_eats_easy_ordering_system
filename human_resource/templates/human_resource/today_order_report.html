@@ -5,7 +5,7 @@
 $(document).ready(function(){
     $("select").change(function(){
         value = $(this).val();
-        $("#print_button").attr("href", "{% url 'report_now' %}?order="+ value)
+        $("#print_button").attr("href", "{% url 'report_now' %}?report=orders&order="+ value)
     });
 });
 </script>
