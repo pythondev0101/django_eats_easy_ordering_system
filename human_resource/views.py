@@ -130,7 +130,23 @@ class OrderPdfView(PDFTemplateView):
             order = OrderForWeek.objects.get(pk=order)
             context["ordername"]= order.name
             context["count"] = orders.count()
-
+        elif report =="orders":
+            print("orders")
+            order =self.request.GET.get('order','')
+            orders = OrderLine.objects.select_related("order").filter(order__weekorder=order)
+            context['orders'] = orders
+            context['count'] = int(orders.count() / 5)
+            order = OrderForWeek.objects.get(pk=order)
+            context["ordername"]= order.name
+            dic = {}
+            for x in orders:
+                if x.order.user not in dic:
+                    dic[x.order.user] = []
+                    dic[x.order.user].append(x.product)
+                else:
+                    dic[x.order.user].append(x.product)
+            print(dic)
+            context['dic'] = dic
         return context
 
     def get_template_names(self):
@@ -139,6 +155,8 @@ class OrderPdfView(PDFTemplateView):
             return ["order_by_food_pdf.html"]
         elif report == "foodsummary":
             return ["food_summary_pdf.html"]
+        elif report == "orders":
+            return["today_order_report_pdf.html"]
 
 
 
